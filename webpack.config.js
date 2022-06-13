@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         filename: "[name].bundle.js",
-        path: __dirname + "/dist"
+        path: path.join(__dirname + "/dist")
     },
     module: {
         rules: [
@@ -26,7 +26,7 @@ module.exports = {
                             name (file) {
                                 return "[path][name].[ext]"
                             },
-                            publicPath: function(url) {
+                            publicPath(url) {
                                 return url.replace("../", "/assets/")
                             }
                         }
@@ -47,5 +47,9 @@ module.exports = {
           analyzerMode: "static", // the report outputs to an HTML file in the dist folder
         })
     ],
-    mode: 'development'
+    mode: 'development',
+    devServer: {
+        static: "./",
+    }
 };
+
